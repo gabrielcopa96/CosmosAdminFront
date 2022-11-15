@@ -46,11 +46,11 @@ import {
     },
   ]
   
-  function classNames(...classes) {
+  function classNames(...classes: any[]) {
     return classes.filter(Boolean).join(' ')
   }
   
-  export default function Example() {
+  export default function Dashboard() {
     return (
       <div>
         <h2 className="text-lg font-medium text-gray-900">Projects</h2>
