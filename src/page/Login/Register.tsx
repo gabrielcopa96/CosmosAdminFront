@@ -1,7 +1,6 @@
-import { ReactElement, useState, ChangeEvent, SetStateAction, Dispatch } from "react";
+import { ReactElement, SetStateAction, Dispatch } from "react";
 import useFormikValid from "../../hooks/useFormikValid";
-import { useSelector, useDispatch } from "react-redux"
-import { useNavigate } from "react-router-dom";
+import { fetchRegister } from "../../redux/async";
 
 type PropsRegister = {
     setActionPage: Dispatch<SetStateAction<"login" | "register">>;
@@ -9,11 +8,8 @@ type PropsRegister = {
 
 const Register = ({ setActionPage }: PropsRegister): ReactElement<HTMLElement> => {
 
-    const dispatch = useDispatch();
+    const { handleSubmit, values, handleChange, errors, isSubmitting, onSubmit } = useFormikValid({ email: '', password: '', username: '', firstName: '', lastName: '' }, "register", fetchRegister)
 
-    const navigate = useNavigate();
-
-    const { handleSubmit, values, handleChange, errors, isSubmitting, onSubmit } = useFormikValid({ email: '', password: '', username: '', firstName: '', lastName: '' })
 
     return (
         <>
@@ -27,10 +23,10 @@ const Register = ({ setActionPage }: PropsRegister): ReactElement<HTMLElement> =
 
                     <div className="mt-8">
                         <div className="mt-6">
-                            <form action="#" method="POST" className="space-y-6" onSubmit={handleSubmit}>
+                            <form className="space-y-6" onSubmit={handleSubmit}>
                                 <div>
                                     <label
-                                        htmlFor="nombre"
+                                        htmlFor="firstName"
                                         className="block text-sm font-medium text-gray-400"
                                     >
                                         Nombre
@@ -50,7 +46,7 @@ const Register = ({ setActionPage }: PropsRegister): ReactElement<HTMLElement> =
 
                                 <div>
                                     <label
-                                        htmlFor="apellido"
+                                        htmlFor="lastName"
                                         className="block text-sm font-medium text-gray-400"
                                     >
                                         Apellido

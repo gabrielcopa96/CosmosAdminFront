@@ -11,7 +11,7 @@ const LoginAndRegister = (): ReactElement<HTMLElement> => {
   return (
     <div>
       <div className="flex min-h-screen">
-        <div className="flex flex-1 items-center bg-stone-200 justify-center">
+        <div className="flex flex-1 items-center bg-logo-main justify-center">
           <div>
             <h1 className="text-6xl font-black text-gray-900 text-center">
               Cosmos.

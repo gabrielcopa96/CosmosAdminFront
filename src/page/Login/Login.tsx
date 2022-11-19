@@ -1,7 +1,9 @@
-import { ReactElement, useState, ChangeEvent, SetStateAction, Dispatch } from "react";
-import useFormikValid from "../../hooks/useFormikValid";
-import { useSelector, useDispatch } from "react-redux"
+import { ReactElement, SetStateAction, Dispatch, useState, ChangeEvent, FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
+import useFormikValid from "../../hooks/useFormikValid";
+import useNavigationPath from "../../hooks/useNavigationPath";
+import { useAppSelector } from "../../hooks/useRedux";
+import { fetchLogin } from "../../redux/async";
 
 type PropsLogin = {
     setActionPage: Dispatch<SetStateAction<"login" | "register">>;
@@ -9,14 +11,15 @@ type PropsLogin = {
 
 const Login = ({ setActionPage }: PropsLogin): ReactElement<HTMLElement> => {
 
-    const dispatch = useDispatch();
+    const { handleSubmit, values, handleChange, errors, isSubmitting, onSubmit } = useFormikValid({ email: '', password: '', }, "login", fetchLogin)
 
-    const navigate = useNavigate();
+    const { status } = useAppSelector(state => state.login);
 
-    const { handleSubmit, values, handleChange, errors, isSubmitting, onSubmit } = useFormikValid({ email: '', password: '', })
+    useNavigationPath('/home', status)
+
     return (
         <>
-            <div className="flex flex-1 flex-col justify-center h-screen px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24 bg-indigo-700">
+            <div className="flex flex-1 flex-col justify-center h-screen px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24 bg-login">
                 <div className="mx-24 w-full max-w-sm lg:w-96">
                     <div>
                         <h2 className="mt-6 text-4xl text-center font-bold tracking-tight text-gray-200">
@@ -26,7 +29,7 @@ const Login = ({ setActionPage }: PropsLogin): ReactElement<HTMLElement> => {
 
                     <div className="mt-8">
                         <div className="mt-6">
-                            <form className="space-y-6" onSubmit={onSubmit}>
+                            <form className="space-y-6" onSubmit={handleSubmit}>
                                 <div>
                                     <label
                                         htmlFor="email"

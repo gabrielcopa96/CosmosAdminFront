@@ -1,48 +1,50 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
+import { fetchLogin } from "../async"
+import { UserOutPut } from "../async/interfaces/async.interfaces"
 
-type User = {
-    _id: string;
-    email: string;
-    password: string;
-    username: string;
-    firstname: string;
-    lastname: string;
-    image?: string;
-    projects?: string[];
+type PayloadUser = {
+    ok: boolean;
+    msg: string;
+    userAuth: UserOutPut
 }
 
-export const fetchLogin = createAsyncThunk(
-    'auth/login',
-    async (user: User) => {
-        const response = await fetch('http://localhost:3002/auth/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(user)
-        })
-        return response.json();
-    }
-)
-
 interface LoginState {
-    user: User | {};
+    user: UserOutPut | {};
+    status: 'success' | 'loading' | 'failed';
+    error: string | null;
 }
 
 const initialState = {
     user: {},
+    status: 'loading',
+    error: null
 } as LoginState
 
 export const loginSlice = createSlice({
     name: 'login',
     initialState,
-    reducers: {},
+    reducers: {
+        logout: (state) => {
+            state.user = {};
+        }
+    },
     extraReducers: (builder) => {
         builder
+            .addCase(fetchLogin.pending, (state, action) => {
+                state.status = 'loading';
+            })
             .addCase(fetchLogin.fulfilled, (state, action) => {
-                state.user = action.payload;
+                const { userAuth } = action.payload;
+                state.status = 'success';
+                console.log(action.payload);
+                state.user = userAuth;
+            })
+            .addCase(fetchLogin.rejected, (state, action) => {
+                state.status = 'failed';
             })
     }
 })
+
+export const { logout } = loginSlice.actions;
 
 export default loginSlice.reducer
