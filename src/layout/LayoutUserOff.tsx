@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { Routes, Route, Outlet } from "react-router-dom";
 import LoginAndRegister from "../page/Login/LoginAndRegister";
 import Welcome from "../page/Welcome/Welcome";
-import PruebaLogin from "../page/Login/PruebaLogin";
 
 const MainLayoutUserOff = () => {
   return (

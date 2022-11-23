@@ -1,16 +1,21 @@
+// import { useEffect } from "react";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import Toast from "../helpers/Toast";
 
 
 const useNavigationPath = (navigation: string, status: string) => {
         const navigate = useNavigate();
 
-        useEffect(() => {
+        useEffect((): any => {
             if (status === "success") {
-                return navigate(navigation)
+                Toast("top-end", "success", "Success");
+                setTimeout(() => {
+                    navigate(navigation)
+                }, 3000)
             }
             if(status === "failed"){
-                return alert('Fallo culiao')
+                Toast("top-end", "error", "error")
             }
         }, [status])
 }

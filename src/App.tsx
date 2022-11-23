@@ -1,8 +1,8 @@
-import { ReactElement } from "react"
+import { ReactElement, useState } from "react"
 import LayoutUserOff from "./layout/LayoutUserOff";
 import LayoutUserOnline from "./layout/LayoutUserOnline";
 
-function App(): ReactElement {
+const App = (): ReactElement => {
 
   return (
     <>

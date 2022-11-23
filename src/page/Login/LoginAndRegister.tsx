@@ -1,4 +1,4 @@
-import { ReactElement, useState } from "react";
+import React, { ReactElement, useState } from "react";
 import Login from "./Login";
 import Register from "./Register";
 
@@ -6,7 +6,8 @@ type ComponentLoginOrRegister = "login" | "register";
 
 const LoginAndRegister = (): ReactElement<HTMLElement> => {
   const [actionPage, setActionPage] =
-    useState<ComponentLoginOrRegister>("login");
+    React.useState<ComponentLoginOrRegister>("login");
+  // const [actionPage, setActionPage] = useState<ComponentLoginOrRegister>(null);
 
   return (
     <div>
