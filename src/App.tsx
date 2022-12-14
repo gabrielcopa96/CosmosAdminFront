@@ -1,12 +1,11 @@
-import { ReactElement, useState } from "react"
-import LayoutUserOff from "./layout/LayoutUserOff";
-import LayoutUserOnline from "./layout/LayoutUserOnline";
+import { ReactElement } from "react"
+import LayoutUser from "./layout/LayoutUser";
 
 const App = (): ReactElement => {
 
   return (
     <>
-      <LayoutUserOff />   
+      <LayoutUser />
     </>
   )
 }

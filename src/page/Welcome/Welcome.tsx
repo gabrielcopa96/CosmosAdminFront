@@ -1,13 +1,22 @@
 import { ReactElement } from "react";
 import CreateProject from "../../components/CreateProject/CreateProject"
+import Dashboard from "../../components/Dashboard/Dashboard";
+import ProjectChoice from "../../components/ProjectChoice/ProjectChoice";
+import SideBar from "../../components/SideBar/SideBar";
+import { useAppSelector } from "../../hooks/useRedux";
 
 const Welcome = (): ReactElement => {
 
-  const token = localStorage.getItem('token');
+  const { user } = useAppSelector(state => state.login);
 
   return (
     <>
-        <CreateProject />
+      {/* <CreateProject /> */}
+      {/* <Dashboard/> */}
+      {/* <ProjectChoice/> */}
+      {
+        user.projects.length > 0 ? <SideBar /> : <CreateProject />
+      }
     </>
   )
 }

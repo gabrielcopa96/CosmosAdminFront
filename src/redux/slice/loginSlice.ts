@@ -9,13 +9,13 @@ type PayloadUser = {
 }
 
 interface LoginState {
-    user: UserOutPut | {};
+    user: UserOutPut | any | null;
     status: 'success' | 'loading' | 'failed';
     error: string | null;
 }
 
 const initialState = {
-    user: {},
+    user: null,
     status: 'loading',
     error: null
 } as LoginState
@@ -47,4 +47,4 @@ export const loginSlice = createSlice({
 
 export const { logout } = loginSlice.actions;
 
-export default loginSlice.reducer
+export default loginSlice.reducer;
