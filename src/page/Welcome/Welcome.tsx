@@ -11,9 +11,6 @@ const Welcome = (): ReactElement => {
 
   return (
     <>
-      {/* <CreateProject /> */}
-      {/* <Dashboard/> */}
-      {/* <ProjectChoice/> */}
       {
         user.projects.length > 0 ? <SideBar /> : <CreateProject />
       }

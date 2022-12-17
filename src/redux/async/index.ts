@@ -91,3 +91,26 @@ export const fetchLogout = createAsyncThunk(
         }
     }
 )
+
+// function async for create new project
+export const newProject = createAsyncThunk(
+    'project/new',
+    async(data: any, thunkApi) => {
+        try {
+            
+            const responseNewProject = await fetch('http://localhost:3002/project', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            })
+
+            return responseNewProject.json();
+
+        } catch (error: any) {
+
+            return thunkApi.rejectWithValue(error.message);
+        }
+    }
+)

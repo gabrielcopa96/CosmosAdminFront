@@ -5,8 +5,6 @@ const CreateProject = (): ReactElement => {
 
   const { user } = useAppSelector(state => state.login)
 
-  console.log(user);
-
   return (
     <div className="flex flex-col items-center justify-center w-screen h-screen bg-gray-200">
       {
