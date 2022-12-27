@@ -54,23 +54,23 @@ export const fetchRegister = createAsyncThunk(
 export const fetchRenewToken = createAsyncThunk(
     'auth/renew',
     async (token: string, thunkApi) => {
-            
-            try {
-    
-                const response = await fetch('http://localhost:3002/auth/renew', {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    }
-                })
-                return response.json();
-    
-            } catch (error: any) {
-    
-                return thunkApi.rejectWithValue(error.message);
-    
-            }
+
+        try {
+
+            const response = await fetch('http://localhost:3002/auth/renew', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            })
+            return response.json();
+
+        } catch (error: any) {
+
+            return thunkApi.rejectWithValue(error.message);
+
         }
+    }
 )
 
 // function async for logout user
@@ -79,7 +79,7 @@ export const fetchLogout = createAsyncThunk(
     async (token: string, thunkApi) => {
         try {
 
-            const response = await fetch('http://localhost:3002/auth/signout', {
+            const response = await fetch('https://cosmos-api.onrender.com/auth/signout', {
                 method: 'DELETE',
             })
             return response.json();
@@ -95,10 +95,10 @@ export const fetchLogout = createAsyncThunk(
 // function async for create new project
 export const newProject = createAsyncThunk(
     'project/new',
-    async(data: any, thunkApi) => {
+    async (data: any, thunkApi) => {
         try {
-            
-            const responseNewProject = await fetch('http://localhost:3002/project', {
+
+            const responseNewProject = await fetch('https://cosmos-api.onrender.com/project', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

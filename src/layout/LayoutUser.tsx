@@ -1,4 +1,5 @@
 import { Routes, Route, Outlet } from "react-router-dom";
+import SideBar from "../components/SideBar/SideBar";
 import { useAppSelector } from "../hooks/useRedux";
 import LoginAndRegister from "../page/Login/LoginAndRegister";
 import Welcome from "../page/Welcome/Welcome";
@@ -34,6 +35,7 @@ const LayoutUser = () => {
               {/* Aca van a ir todos mis componentes junto a sus rutas */}
               {/* Todos aquellos que no necesiten una autorizacion para realizar una peticion */}
               <Route path="/" element={<Welcome />} />
+              <Route path="/dashboard" element={<SideBar />} />
             </Route>
           )
         }
